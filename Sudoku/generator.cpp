@@ -40,8 +40,9 @@ int sudoku_argv(int argc, char *argv1, char *argv2)		//	命令行参数判断
 	{
 		printf("本程序一次最多支持生成100万个数独（大约100秒），请重新输入\n");
 		return -1;
-	}	   
-        return n;  
+	}
+	else	 
+        	return n;  
     }
 }
 
