@@ -4,17 +4,17 @@
 #include "generator.h"
 
 
-int sudoku_argv(int argc, char *argv1, char *argv2)		//	ÃüÁîĞĞ²ÎÊıÅĞ¶Ï 
+int sudoku_argv(int argc, char *argv1, char *argv2)		//	å‘½ä»¤è¡Œå‚æ•°åˆ¤æ–­ 
 {   
 	if(argc != 3)
 	{
-		printf("ÊäÈëÃüÁîĞĞ²ÎÊı¸öÊı´íÎó£¬Ó¦Îª \"sudoku.exe -c n\"£¬ÆäÖĞnÎªÉú³ÉÆåÅÌÊıÁ¿\n");
+		printf("è¾“å…¥å‘½ä»¤è¡Œå‚æ•°ä¸ªæ•°é”™è¯¯ï¼Œåº”ä¸º \"sudoku.exe -c n\"ï¼Œå…¶ä¸­nä¸ºç”Ÿæˆæ£‹ç›˜æ•°é‡\n");
 		return -1;
 	}
 	
 	if(strcmp(argv1,"-c") != 0)
 	{
-		printf("ÊäÈë²ÎÊı²»ºÏ·¨£¬Çë¼ì²éÄúµÄÊäÈë\n");
+		printf("è¾“å…¥å‚æ•°ä¸åˆæ³•ï¼Œè¯·æ£€æŸ¥æ‚¨çš„è¾“å…¥\n");
 		return -1;
 	}
 	
@@ -22,25 +22,25 @@ int sudoku_argv(int argc, char *argv1, char *argv2)		//	ÃüÁîĞĞ²ÎÊıÅĞ¶Ï
     char *s = argv2;
     int i = 0;
  
-    while( '0' <= *s && *s <= '9' && i < len)
+    while( '0' <= *s && *s <= '9' && i < len)			//	Test third parameter is number
 	{
         s++;
         i++;
     }
  
-    if(i != len)
+    if(i != len)						//	argv2[] not number, error
     {
-    	printf("ÊäÈëÆåÅÌ¸öÊı²»ºÏ·¨£¬Çë¼ì²éÄúµÄÊäÈë\n"); 
+    	printf("è¾“å…¥æ£‹ç›˜ä¸ªæ•°ä¸åˆæ³•ï¼Œè¯·æ£€æŸ¥æ‚¨çš„è¾“å…¥\n"); 
         return -1;
     }
-    else 
+    else 							//	return Sudoku number
     {
-    	int n = atoi(argv2);
+    	int n = atoi(argv2);					//	char to int
         return n;  
 	}
 }
 
-void sudoku_algorithm(int a[10][10])		//	Éú³ÉÊı¶ÀµÄËã·¨
+void sudoku_algorithm(int a[10][10])		//	ç”Ÿæˆæ•°ç‹¬çš„ç®—æ³•
 {
 	for (int row = 1; row <= 9; row++)
 	{
@@ -65,17 +65,17 @@ void sudoku_algorithm(int a[10][10])		//	Éú³ÉÊı¶ÀµÄËã·¨
 			{
 				bool flag0 = sudoku_test(a, row, col);
 
-				if (!flag0)			//	a[row][col]²»ÄÜÌîÊı
+				if (!flag0)			//	a[row][col]ä¸èƒ½å¡«æ•°
 				{
-					for (int i = 1; i <= col; i++)	//	ÖØÖÃµ±Ç°ĞĞ
+					for (int i = 1; i <= col; i++)	//	é‡ç½®å½“å‰è¡Œ
 						a[row][i] = 0;
 
-					fail_times++;	//	µ±Ç°ĞĞ·ÅÖÃÊ§°Ü´ÎÊı +1
+					fail_times++;	//	å½“å‰è¡Œæ”¾ç½®å¤±è´¥æ¬¡æ•° +1
 					col = 1;
 					continue;
 				}
 				else
-					flag = true;	//	ÄÜÌîÊı£¬a[row][col]²»ÔÙÖ´ĞĞsudoku_test()
+					flag = true;	//	èƒ½å¡«æ•°ï¼Œa[row][col]ä¸å†æ‰§è¡Œsudoku_test()
 			}
 
 			int  rand_num = rand() % 9 + 1;
@@ -84,7 +84,7 @@ void sudoku_algorithm(int a[10][10])		//	Éú³ÉÊı¶ÀµÄËã·¨
 			bool flag2 = sudoku_col(a, row, col, rand_num);
 			bool flag3 = sudoku_mod(a, row, col, rand_num);
 
-			if (flag1 && flag2 && flag3)	//	ÕÒµ½Ò»¸öÂú×ã¸ÃÎ»ÖÃµÄÊı
+			if (flag1 && flag2 && flag3)	//	æ‰¾åˆ°ä¸€ä¸ªæ»¡è¶³è¯¥ä½ç½®çš„æ•°
 			{
 				a[row][col++] = rand_num;
 				flag = false;
@@ -97,7 +97,7 @@ void sudoku_algorithm(int a[10][10])		//	Éú³ÉÊı¶ÀµÄËã·¨
 }
 
 
-bool sudoku_row(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸ÃĞĞÊÇ·ñÒÑÓĞrand_numÕâ¸öÊı
+bool sudoku_row(int a[10][10], int row, int col, int rand_num)	//	åˆ¤æ–­è¯¥è¡Œæ˜¯å¦å·²æœ‰rand_numè¿™ä¸ªæ•°
 {
 	for (int i = 1; i < col; i++)
 	{
@@ -108,7 +108,7 @@ bool sudoku_row(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸ÃĞĞÊÇ·ñÒÑ
 }
 
 
-bool sudoku_col(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸ÃÁĞÊÇ·ñÒÑÓĞrand_numÕâ¸öÊı
+bool sudoku_col(int a[10][10], int row, int col, int rand_num)	//	åˆ¤æ–­è¯¥åˆ—æ˜¯å¦å·²æœ‰rand_numè¿™ä¸ªæ•°
 {
 	for (int i = 1; i < row; i++)
 	{
@@ -119,7 +119,7 @@ bool sudoku_col(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸ÃÁĞÊÇ·ñÒÑ
 }
 
 
-bool sudoku_mod(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸Ã¹¬ÊÇ·ñÒÑÓĞrand_numÕâ¸öÊı
+bool sudoku_mod(int a[10][10], int row, int col, int rand_num)	//	åˆ¤æ–­è¯¥å®«æ˜¯å¦å·²æœ‰rand_numè¿™ä¸ªæ•°
 {
 	int mod_r = ((row - 1) / 3) * 3 + 1;
 	int mod_c = ((col - 1) / 3) * 3 + 1;
@@ -136,7 +136,7 @@ bool sudoku_mod(int a[10][10], int row, int col, int rand_num)	//	ÅĞ¶Ï¸Ã¹¬ÊÇ·ñÒÑ
 }
 
 
-bool sudoku_test(int a[10][10], int row, int col)				//	ÅĞ¶ÏÕâ¸ö¸ñ×ÓÄÜ·ñÌîÈë 1~9
+bool sudoku_test(int a[10][10], int row, int col)				//	åˆ¤æ–­è¿™ä¸ªæ ¼å­èƒ½å¦å¡«å…¥ 1~9
 {
 	int count = 0;
 
@@ -146,20 +146,20 @@ bool sudoku_test(int a[10][10], int row, int col)				//	ÅĞ¶ÏÕâ¸ö¸ñ×ÓÄÜ·ñÌîÈë 1~9
 		bool flag2 = sudoku_col(a, row, col, i);
 		bool flag3 = sudoku_mod(a, row, col, i);
 
-		if (flag1 && flag2 && flag3)	//	ËµÃ÷Êı i ¿ÉÒÔÌîÈë¸ñ×Ó			
+		if (flag1 && flag2 && flag3)	//	è¯´æ˜æ•° i å¯ä»¥å¡«å…¥æ ¼å­			
 			break;
 		else
 			count++;
 	}
 
-	if (count == 9)						//	ËµÃ÷ 1~9 ¶¼²»ÄÜÌîÈë
+	if (count == 9)						//	è¯´æ˜ 1~9 éƒ½ä¸èƒ½å¡«å…¥
 		return false;
 	else
 		return true;
 }
 
 
-void sudoku_print(int a[10][10])		//	´òÓ¡Êı¶À
+void sudoku_print(int a[10][10])		//	æ‰“å°æ•°ç‹¬
 {
 	for (int i = 1; i <= 9; i++)
 	{
