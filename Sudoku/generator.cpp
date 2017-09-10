@@ -86,15 +86,15 @@ void sudoku_algorithm(int a[10][10])		//	生成数独的算法
 
 			int  rand_num = rand() % 9 + 1;
 
-			bool flag1 = sudoku_row(a, row, col, rand_num);
-			bool flag2 = sudoku_col(a, row, col, rand_num);
-			bool flag3 = sudoku_mod(a, row, col, rand_num);
+			if (!sudoku_row(a, row, col, rand_num))
+				continue;
+			if (!sudoku_col(a, row, col, rand_num))
+				continue;
+			if (!sudoku_mod(a, row, col, rand_num))
+				continue;
 
-			if (flag1 && flag2 && flag3)	//	找到一个满足该位置的数
-			{
-				a[row][col++] = rand_num;
-				flag = false;
-			}
+			a[row][col++] = rand_num;
+			flag = false;
 		}
 		/*
 		for(int i = 1; i <= 9; i++)
@@ -146,16 +146,27 @@ bool sudoku_test(int a[10][10], int row, int col)				//	判断这个格子能否
 {
 	int count = 0;
 
-	for (int i = 1; i <= 9; i++)
+	for (int i = 1; i <= 9; i++)				//	2017.9.10 
 	{
-		bool flag1 = sudoku_row(a, row, col, i);
-		bool flag2 = sudoku_col(a, row, col, i);
-		bool flag3 = sudoku_mod(a, row, col, i);
-
-		if (flag1 && flag2 && flag3)	//	说明数 i 可以填入格子			
-			break;
-		else
+		if (!sudoku_row(a, row, col, i))
+		{
 			count++;
+			continue;
+		}
+
+		if (!sudoku_col(a, row, col, i))
+		{
+			count++;
+			continue;
+		}
+
+		if (!sudoku_mod(a, row, col, i))
+		{
+			count++;
+			continue;
+		}
+
+		break;						//	说明数 i 可以填入格子
 	}
 
 	if (count == 9)						//	说明 1~9 都不能填入
