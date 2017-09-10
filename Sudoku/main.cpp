@@ -1,27 +1,27 @@
-/*	VSÖÐÊ¹ÓÃ¾Éº¯ÊýÈçscanf()¡¢fopen()£¬ÐèÒªÔÚ ¡° ÏîÄ¿ - ÊôÐÔ- C/C++ - Ô¤´¦ÀíÆ÷ - ÅäÖÃ¹ÜÀíÆ÷ ¡±
-	ÖÐ¼ÓÒ»ÐÐ _CRT_SECURE_NO_WARNINGS	 */
+/*	VSä¸­ä½¿ç”¨æ—§å‡½æ•°å¦‚scanf()ã€fopen()ï¼Œéœ€è¦åœ¨ â€œ é¡¹ç›® - å±žæ€§- C/C++ - é¢„å¤„ç†å™¨ - é…ç½®ç®¡ç†å™¨ â€
+	ä¸­åŠ ä¸€è¡Œ _CRT_SECURE_NO_WARNINGS	 */
 
-/*  Òà»òÊ¹ÓÃ FILE *fp = NULL; errno_t err = 0; err = fopen_s(&fp, filename, mode);	À´´ò¿ªÎÄ¼þ */
+/*  äº¦æˆ–ä½¿ç”¨ FILE *fp = NULL; errno_t err = 0; err = fopen_s(&fp, filename, mode);	æ¥æ‰“å¼€æ–‡ä»¶ */
 
-/*  ¡° ÏîÄ¿ - ÊôÐÔ- C/C++ - µ÷ÊÔÐÅÏ¢¸ñÊ½ ¡± ÖÐÊ¹ÓÃ ¡° ³ÌÐòÊý¾Ý¿â ¡± Ïû³ý WARNING LNK 4075 */
+/*  â€œ é¡¹ç›® - å±žæ€§- C/C++ - è°ƒè¯•ä¿¡æ¯æ ¼å¼ â€ ä¸­ä½¿ç”¨ â€œ ç¨‹åºæ•°æ®åº“ â€ æ¶ˆé™¤ WARNING LNK 4075 */
 
-/*	Êý¶ÀÉú³ÉÆ÷1.0  */
-/*	by FZU_031502525_Lyy		2017-09-04 18£º00	*/
+/*	æ•°ç‹¬ç”Ÿæˆå™¨1.0  */
+/*	by FZU_031502525_Lyy		2017-09-04 18ï¼š00	*/
 
-/*	Êý¶ÀÉú³ÉÆ÷2.0£¨½â¾öÁËÉú³ÉÖØ¸´Êý¶ÀÎÊÌâ£©  */
-/*	by FZU_031502525_Lyy		2017-09-05 12£º00	*/
+/*	æ•°ç‹¬ç”Ÿæˆå™¨2.0ï¼ˆè§£å†³äº†ç”Ÿæˆé‡å¤æ•°ç‹¬é—®é¢˜ï¼‰  */
+/*	by FZU_031502525_Lyy		2017-09-05 12ï¼š00	*/
 
-/*	Êý¶ÀÉú³ÉÆ÷3.0£¨Ìá¸ßÁËÐ§ÂÊ£¬71Ãëµ½8Ãë£©  */
-/*	by FZU_031502525_Lyy		2017-09-05 14£º10	*/
+/*	æ•°ç‹¬ç”Ÿæˆå™¨3.0ï¼ˆæé«˜äº†æ•ˆçŽ‡ï¼Œ71ç§’åˆ°8ç§’ï¼‰  */
+/*	by FZU_031502525_Lyy		2017-09-05 14ï¼š10	*/
 
-/*	Ã»ÓÐ±£´æµ¼ÖÂÖÐÍ¾±»ÎÒÎóÉ¾£¬ÕÒ»ØµÄ.cppÎÄ¼þÊÇÂÒÂë£¬ÎÞÄÎÖØÐÂÇÃÒ»±é = =¡¢
-	by FZU_031502525_Lyy		2017-09-06 10£º30	*/
+/*	æ²¡æœ‰ä¿å­˜å¯¼è‡´ä¸­é€”è¢«æˆ‘è¯¯åˆ ï¼Œæ‰¾å›žçš„.cppæ–‡ä»¶æ˜¯ä¹±ç ï¼Œæ— å¥ˆé‡æ–°æ•²ä¸€é = =ã€
+	by FZU_031502525_Lyy		2017-09-06 10ï¼š30	*/
 
-/*	Êý¶ÀÉú³ÉÆ÷4.0£¨ÔÚÖ÷º¯Êý´ò¿ªºÍ¹Ø±ÕÎÄ¼þ£¬Ìá¸ßÁËÐ§ÂÊ£¬8Ãëµ½5.6Ãë£©  */
-/*	by FZU_031502525_Lyy		2017-09-05 14£º10	*/
+/*	æ•°ç‹¬ç”Ÿæˆå™¨4.0ï¼ˆåœ¨ä¸»å‡½æ•°æ‰“å¼€å’Œå…³é—­æ–‡ä»¶ï¼Œæé«˜äº†æ•ˆçŽ‡ï¼Œ8ç§’åˆ°5.6ç§’ï¼‰  */
+/*	by FZU_031502525_Lyy		2017-09-05 14ï¼š10	*/
 
-/*	Êý¶ÀÉú³ÉÆ÷5.0£¨ÐÞ¸Ä´úÂëÊ¹ÆäÄÜÓÃÃüÁîÐÐÖ´ÐÐ£¬µ«Èç´Ë±ã²»ÄÜµ¥¶ÀÔËÐÐ.exeÁË£©  */
-/*	by FZU_031502525_Lyy		2017-09-07 17£º40	*/
+/*	æ•°ç‹¬ç”Ÿæˆå™¨5.0ï¼ˆä¿®æ”¹ä»£ç ä½¿å…¶èƒ½ç”¨å‘½ä»¤è¡Œæ‰§è¡Œï¼Œä½†å¦‚æ­¤ä¾¿ä¸èƒ½å•ç‹¬è¿è¡Œ.exeäº†ï¼‰  */
+/*	by FZU_031502525_Lyy		2017-09-07 17ï¼š40	*/
 
 #include <stdio.h>
 #include <time.h>
@@ -40,8 +40,9 @@ int main(int argc, char *argv[])
 	clock_t start_time = clock();
 
 	srand((unsigned)time(NULL));
+	
 	err = fopen_s(&fp, "./sudoku.txt", "a+");
-	fopen("./sudoku.txt", "a+");
+	//fopen("./sudoku.txt", "a+");
 	for (int i = 0; i < n; i++)
 	{
 		int sudoku[10][10] = { 0 };		//	for row[1] to row[9]
