@@ -1,5 +1,6 @@
 // generator. h 
 
+
 #pragma once
 
 int  sudoku_argv(int argc, char *argv1, char *argv2);
