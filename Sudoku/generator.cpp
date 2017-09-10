@@ -23,7 +23,7 @@ int sudoku_argv(int argc, char *argv1, char *argv2)		//	命令行参数判断
     int i = 0;
  
     while( '0' <= *s && *s <= '9' && i < len)			//	Test third parameter is number
-	{
+    {
         s++;
         i++;
     }
@@ -36,8 +36,13 @@ int sudoku_argv(int argc, char *argv1, char *argv2)		//	命令行参数判断
     else 							//	return Sudoku number
     {
     	int n = atoi(argv2);					//	char to int
+	if (n > 1000000)
+	{
+		printf("本程序一次最多支持生成100万个数独（大约100秒），请重新输入\n");
+		return -1;
+	}	   
         return n;  
-	}
+    }
 }
 
 void sudoku_algorithm(int a[10][10])		//	生成数独的算法
