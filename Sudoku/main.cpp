@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 	clock_t end_time = clock();
 
-	printf("\n/*	Sudoku made by 031502525_Lyy	*/\n\nit takes program %fs to create %d sudoku which saved in ./sudoku.txt\n\n", (double)(end_time - start_time) / CLOCKS_PER_SEC, n);
-	system("pause");
+	//printf("\n/*	Sudoku made by 031502525_Lyy	*/\n\nit takes program %fs to create %d sudoku which saved in ./sudoku.txt\n\n", (double)(end_time - start_time) / CLOCKS_PER_SEC, n);
+	//system("pause");
 	return 0;
 }
