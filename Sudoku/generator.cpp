@@ -56,7 +56,7 @@ void sudoku_algorithm(int a[10][10])		//	生成数独的算法
 		for (int col = 1; col <= 9; )
 		{
 
-			if (fail_times > 100 && row > 2)
+			if (fail_times > 150 && row > 2)
 			{
 				for (int i = 1; i <= 9; i++)
 				{
