@@ -48,6 +48,7 @@ int sudoku_argv(int argc, char *argv1, char *argv2)		//	命令行参数判断
 
 void sudoku_algorithm(int a[10][10])		//	生成数独的算法
 {
+	a[1][1] = (2 + 5) % 9 + 1;		//	2017.9.25
 	for (int row = 1; row <= 9; row++)
 	{
 		int  fail_times = 0;
@@ -55,7 +56,12 @@ void sudoku_algorithm(int a[10][10])		//	生成数独的算法
 
 		for (int col = 1; col <= 9; )
 		{
-
+			if (row == 1 && col == 1)	//	2017.9.25
+			{
+				col++;
+				continue;
+			}
+			
 			if (fail_times > 150 && row > 2)
 			{
 				for (int i = 1; i <= 9; i++)
